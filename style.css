@@ -1,0 +1,242 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+canvas {
+  display: block;
+}
+
+#shaderObject {
+  position: fixed;
+}
+
+a {
+  color: rgb(255, 255, 255);
+}
+
+a:hover {
+  color: rgb(255, 120, 100);
+}
+
+/*GENERAL STYLING*/
+#indexBody {
+  background-color: black;
+}
+
+#container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 100px;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  color: white;
+}
+
+#contentHeadings {
+  position: relative;
+  width: 500px;
+}
+
+p {
+  padding: 0;
+  margin: 2px 0 4px 0;
+}
+
+#contentFlex {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 500px);
+  position: relative;
+}
+
+#tabs {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 2px 0 0 0;
+  color: black;
+  font-size: 11pt;
+  font-weight: 300;
+}
+
+.tabContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 3px;
+}
+
+/*HEADER STYLING*/
+h2 {
+  font-weight: 200;
+  font-size: 82pt;
+  margin: 0;
+  line-height: 60pt;
+  margin-block-end: 20px;
+}
+
+h3 {
+  margin: 0 0 5px 0;
+  font-weight: 400;
+  font-size: 18pt;
+}
+
+#contactI {
+  margin: 0 0 20px 0;
+  font-weight: 200;
+}
+
+/*TABS STYLING*/
+/*TOP TABS*/
+#tabsTitles {
+  display: flex;
+  gap: 2px;
+  height: fit-content;
+}
+
+.nameTitle {
+  background-color: rgba(255, 255, 255, 1);
+  color: black;
+  padding: 2px 5px 2px 5px;
+  min-width: 10px;
+  border: 1px solid rgba(255, 255, 255, 0);
+  height: fit-content;
+}
+
+.nameTitle:hover {
+  background-color:  rgba(255, 255, 255, 0);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 1);
+}
+
+/*CONTENT TABS*/
+.tabContent {
+  height: 0;
+  overflow: scroll;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: none;
+}
+
+#graphicDesignerContent, #artistContent {
+  padding: 40px;
+  background-color: rgba(255, 255, 255, 0.65);
+
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+
+/*videos*/
+iframe {
+  display: block;
+  border: none;
+  width: 600px !important;
+  height: 379px !important;
+  padding: 0 0 40px 0;
+}
+
+.borderStyle {
+  border: 1px white solid !important;
+}
+
+.videoTitle {
+  padding: 40px 0 0 0;
+  width: 600px;
+}
+
+.paddingsmall {
+  padding-top: 20px !important;
+  margin-top: 0;
+}
+
+
+/*Image formatting*/
+#swcImageFrame {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px 0px;
+  margin-bottom: 20px;
+}
+
+img {
+  box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.1);
+
+}
+
+.graphicDesignImage {
+  width: 45%;
+  max-width: 100%;
+  object-fit: contain;
+  display: inline-block;
+  flex-grow: 1;
+}
+
+.graphicDesignImage > img, .graphicDesignImage > div > img, .graphicDesignImage > video {
+  max-width: 100%;
+}
+
+.graphicDesignImage > video {
+  max-width: 230px;
+}
+
+.graphicDesignImage > video.large {
+  max-width: 100%;
+}
+
+.eventTitle, .projectTitle {
+  color: black;
+}
+
+.contentFrame {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 40px 60px 40px;
+  flex-grow: 1;
+  gap: 20px;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  color: white;
+}
+
+#eventposters {
+  display: none;
+  border: 1px solid white;
+}
+
+.projectAbout {
+  padding: 80px 0 0 0;
+  width: calc(100% - 80px);
+  margin: auto;
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  color: black;
+}
+
+.smaller {
+  max-width: 500px;
+}
+
+.nopaddingtop {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.nopaddingbot {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
