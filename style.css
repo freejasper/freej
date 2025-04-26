@@ -147,13 +147,19 @@ iframe {
   padding: 0 0 40px 0;
 }
 
+iframe.reel {
+  width: 100% !important;
+  height: 100% !important;
+}
+
 .borderStyle {
   border: 1px white solid !important;
 }
 
 .videoTitle {
-  padding: 40px 0 0 0;
+  padding: 40px 0 10px 0;
   width: 600px;
+  margin: auto;
 }
 
 .paddingsmall {
