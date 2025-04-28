@@ -41,20 +41,11 @@ a:hover {
   color: white;
 }
 
-#contentHeadings {
-  position: relative;
-  width: 500px;
-}
-
-p {
-  padding: 0;
-  margin: 2px 0 4px 0;
-}
-
 #contentFlex {
   display: flex;
   flex-direction: column;
   width: calc(100% - 500px);
+  height: 100%;
   position: relative;
 }
 
@@ -66,6 +57,40 @@ p {
   color: black;
   font-size: 11pt;
   font-weight: 300;
+}
+
+#contentHeadings {
+  position: relative;
+  width: 500px;
+}
+
+@media screen and (max-width: 1399px) {
+  #contentHeadings {
+    width: 400px;
+  }
+  #contentFlex {
+    width: calc(100% - 400px);
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  #container {
+    flex-direction: column;
+    padding: 30px 50px 50px 50px;
+  }
+  #contentFlex {
+    width: 100%;
+    max-width: 600px;
+  }
+  #contentHeadings {
+    height: fit-content;
+  }
+}
+
+
+p {
+  padding: 0;
+  margin: 2px 0 4px 0;
 }
 
 .tabContent {
@@ -80,8 +105,23 @@ h2 {
   font-weight: 200;
   font-size: 82pt;
   margin: 0;
-  line-height: 60pt;
   margin-block-end: 20px;
+}
+
+@media screen and (max-width: 1199px) {
+  h2 {
+    font-size: 62pt;
+    margin-block-end: 0px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  h2 {
+    font-size: 52pt;
+  }
+  #container {
+    padding: 10px 30px 30px 30px;
+  }
 }
 
 h3 {
@@ -121,15 +161,36 @@ h3 {
 /*CONTENT TABS*/
 .tabContent {
   height: 0;
-  overflow: scroll;
+  overflow: hidden;
   background-color: rgba(255, 255, 255, 0.1);
   display: none;
 }
 
-#graphicDesignerContent, #artistContent {
-  padding: 40px;
-  background-color: rgba(255, 255, 255, 0.65);
+.tabContent:hover, .tabContent:active, .tabContent:focus {
+  overflow-y: auto;
+}
 
+#graphicDesignerContent, #artistContent {
+  background-color: rgba(255, 255, 255, 0.65);
+  width: 100%;
+  padding: 40px 0 40px 0;
+}
+
+#artistContent {
+  padding: 40px;
+}
+
+@media screen and (max-width: 520px) {
+  #graphicDesignerContent {
+    padding: 20px 0 20px 0;
+  }
+  #artistContent {
+    padding: 20px;
+  }
+}
+
+#graphicDesignerContent > p {
+  padding: 0 40px 0 40px;
 }
 
 .center {
@@ -147,9 +208,24 @@ iframe {
   padding: 0 0 40px 0;
 }
 
+div.reel {
+  padding-top: 20px;
+}
+
 iframe.reel {
-  width: 100% !important;
-  height: 100% !important;
+  max-width: 100%;
+  height: calc(100% - 6px) !important;
+  max-height: 100%;
+}
+
+
+
+@media screen and (max-width: 1400px) {
+  div.reel > div > iframe {
+    width: 100% !important;
+    height: 281px !important;
+    max-width: 100%;
+  }
 }
 
 .borderStyle {
@@ -208,14 +284,24 @@ img {
 .contentFrame {
   display: flex;
   justify-content: space-around;
-  padding: 20px 40px 60px 40px;
   flex-grow: 1;
   gap: 20px;
-
+  width: calc(100% - 80px);
+  margin: auto;
   font-family: "Space Grotesk", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
   color: white;
+}
+
+.noGrow {
+  flex-grow: unset;
+}
+
+@media screen and (max-width: 1280px) {
+  .noGrow {
+    width: 40%;
+  }
 }
 
 #eventposters {
@@ -233,6 +319,18 @@ img {
   color: black;
 }
 
+@media screen and (max-width: 700px) {
+  .projectAbout {
+    padding: 20px 0 0 0;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .projectAbout {
+    padding: 20px 0 0 0;
+  }
+}
+
 .smaller {
   max-width: 500px;
 }
@@ -245,4 +343,26 @@ img {
 .nopaddingbot {
   padding-bottom: 0;
   margin-bottom: 0;
+}
+
+/* Scroll bars */
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  display: none;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.5); 
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(255, 120, 100); 
 }
