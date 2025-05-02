@@ -46,9 +46,13 @@ void main() {
 
     greenC += mix(blueC, redC, 0.5);
 
-    
-    //make grid UPDATE THIS WITH PASSED GRID FROM JS AND USE IF STATEMENT TO CHECK POS AGAINST POSITION
-    if ((mod(pos.x, 0.005) > 0.001 || mod(pos.y, 0.01) > 0.002) || pos.x < 0.005 || pos.y < 0.002)  {
+
+    //computing grid
+    vec2 coord = mod(gl_FragCoord.xy, 10.);
+    float gridDist = length(coord - 5.);
+
+
+    if (gridDist > 1.0)  {
         redC *= 0.75;
         blueC *= 0.75;
         greenC *= 0.3;

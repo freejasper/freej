@@ -5,6 +5,7 @@
 html, body {
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 canvas {
@@ -161,14 +162,13 @@ h3 {
 /*CONTENT TABS*/
 .tabContent {
   height: 0;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
   background-color: rgba(255, 255, 255, 0.1);
   display: none;
 }
 
-.tabContent:hover, .tabContent:active, .tabContent:focus {
-  overflow-y: auto;
-}
+
 
 #graphicDesignerContent, #artistContent {
   background-color: rgba(255, 255, 255, 0.65);
@@ -203,9 +203,26 @@ h3 {
 iframe {
   display: block;
   border: none;
-  width: 600px !important;
-  height: 379px !important;
-  padding: 0 0 40px 0;
+  width: 100% !important;
+  height: 100%;
+  margin: 0 0 40px 0;
+}
+
+.iframeContainer {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  margin: 40px 0 40px 0;
+}
+
+.iframeContainer iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 div.reel {
@@ -234,7 +251,7 @@ iframe.reel {
 
 .videoTitle {
   padding: 40px 0 10px 0;
-  width: 600px;
+  width: 100%;
   margin: auto;
 }
 
