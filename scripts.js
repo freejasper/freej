@@ -18,18 +18,18 @@ $('.nameTitle').on('click', event => {
             let visibleSiblings = targetTitle.siblings().filter(':visible');
     
             if(visibleSiblings.length === 0) {
-                targetTitle.addClass('borderStyle').css('display', 'block');
+                targetTitle.addClass('borderStyle').css('visibility', 'visible');
                 targetTitle.stop().animate({ height: '100%' }, 200);
             } else {
                 visibleSiblings.animate({ height: '0'}, 200, function() {
-                    visibleSiblings.removeClass('borderStyle').css('display', 'none');
-                    targetTitle.addClass('borderStyle').css('display', 'block');
+                    visibleSiblings.removeClass('borderStyle').css('visibility', 'hidden');
+                    targetTitle.addClass('borderStyle').css('visibility', 'visible');
                     targetTitle.stop().animate({ height: '100%' }, 200);
                 });
             }        
         } else {
             targetTitle.animate({ height: '0'}, 200, function() {
-                targetTitle.removeClass('borderStyle').css('display', 'none');
+                targetTitle.removeClass('borderStyle').css('visibility', 'hidden');
             });
         }
     
@@ -62,14 +62,14 @@ function toggleContent (clickedButton) {
 
             if(content.height() === 0) {
                 if(contentType.children().filter(':visible').length === 0) {
-                    content.addClass('borderStyle').css('display', 'flex').stop().animate({ width: cWidth}, 200, function() {
+                    content.addClass('borderStyle').css({display: 'flex', visibility: 'visible'}).stop().animate({ width: cWidth}, 200, function() {
                         content.stop().animate({ height: swcHeight + 'px'}, { duration: 200, queue: false });
                     });
                 } else {
                     content.siblings().stop().animate({ height: '0' }, 200, function() {
                         content.siblings().stop().animate({ width: '0'}, 200, function() {
-                            content.siblings().removeClass('borderStyle').css('display', 'none');
-                            content.css('display', 'flex').addClass('borderStyle').stop().animate({ width: cWidth}, 200, function() {
+                            content.siblings().removeClass('borderStyle').css('visibility', 'none');
+                            content.css({display: 'flex', visibility: 'visible'}).addClass('borderStyle').stop().animate({ width: cWidth}, 200, function() {
                                 content.stop().animate({ height: swcHeight + 'px'}, { duration: 200, queue: false });
                             });
                         });
@@ -78,7 +78,7 @@ function toggleContent (clickedButton) {
             } else {
                 content.stop().animate({ height: '0'}, 200, function() {
                     content.stop().animate({ width: '0'}, 200, function() {
-                        content.removeClass('borderStyle').css('display', 'none');
+                        content.removeClass('borderStyle').css('visibility', 'hidden');
                     });
                 });
             };
@@ -93,14 +93,14 @@ function toggleContent (clickedButton) {
             if(content.length) {
                 if(content.height() === 0) {
                     if(contentType.children().filter(':visible').length === 0) {
-                        content.addClass('borderStyle').css('display', 'block').stop().animate({ width: cWidth}, 200, function() {
+                        content.addClass('borderStyle').css('visibility', 'visible').stop().animate({ width: cWidth}, 200, function() {
                             content.stop().animate({ height: '400px'}, { duration: 200, queue: false });
                         });
                     } else {
                         content.siblings().stop().animate({ height: '0' }, 200, function() {
                             content.siblings().stop().animate({ width: '0'}, 200, function() {
-                                content.siblings().removeClass('borderStyle').css('display', 'none');
-                                content.css('display', 'block').addClass('borderStyle').stop().animate({ width: cWidth}, 200, function() {
+                                content.siblings().removeClass('borderStyle').css('visibility', 'hidden');
+                                content.css('visibility', 'visible').addClass('borderStyle').stop().animate({ width: cWidth}, 200, function() {
                                     content.stop().animate({ height: '400px'}, { duration: 200, queue: false });
                                 });
                             });
@@ -109,7 +109,7 @@ function toggleContent (clickedButton) {
                 } else {
                     content.stop().animate({ height: '0'}, 200, function() {
                         content.stop().animate({ width: '0'}, 200, function() {
-                            content.removeClass('borderStyle').css('display', 'none');
+                            content.removeClass('borderStyle').css('visibility', 'hidden');
                         });
                     });
                 }
