@@ -1,124 +1,195 @@
 $(window).on('load', function() {   
     $('#swcImageFrame').children().each(function(index) {
-        if(index % 2 != 0) {
-            $(this).css({marginLeft : '-40px', transform : 'translateY(20px)', zIndex : '1'});
+        if (index % 2 !== 0) {
+            $(this).css({
+                marginLeft: '-40px',
+                transform: 'translateY(20px)',
+                zIndex: '1'
+            });
         } else {
-            $(this).css({zIndex : '2', transform: 'translateY(0)'});
-
+            $(this).css({
+                zIndex: '2',
+                transform: 'translateY(0)'
+            });
         }
-    })
-})
+    });
+});
+
 
 // hide and show tab content
-$('.nameTitle').on('click', event => {
+$('.nameTitle').on('click', function(event) {
     let currentTitle = $(event.currentTarget).attr('id');
     let targetTitle = $('#' + currentTitle + 'Content');
 
-        if(targetTitle.height() === 0) {
-            let visibleSiblings = targetTitle.siblings().filter(':visible');
-    
-            if(visibleSiblings.length === 0) {
-                targetTitle.addClass('borderStyle').css('visibility', 'visible');
-                targetTitle.stop().animate({ height: '100%' }, 200);
-            } else {
-                visibleSiblings.animate({ height: '0'}, 200, function() {
-                    visibleSiblings.removeClass('borderStyle').css('visibility', 'hidden');
-                    targetTitle.addClass('borderStyle').css('visibility', 'visible');
-                    targetTitle.stop().animate({ height: '100%' }, 200);
-                });
-            }        
+    if (!targetTitle.is(':visible')) {
+        let visibleSiblings = targetTitle.siblings(':visible');
+
+        if (visibleSiblings.length === 0) {
+            targetTitle
+                .addClass('borderStyle')
+                .css({ visibility: 'visible', display: 'block', height: 0 });
+
+            let fullHeight = targetTitle.get(0).scrollHeight;
+
+            targetTitle.stop().animate({ height: fullHeight }, 200);
         } else {
-            targetTitle.animate({ height: '0'}, 200, function() {
-                targetTitle.removeClass('borderStyle').css('visibility', 'hidden');
+            visibleSiblings.stop().animate({ height: 0 }, 200, function() {
+                visibleSiblings
+                    .removeClass('borderStyle')
+                    .css({ visibility: 'hidden', display: 'none' });
+
+                targetTitle
+                    .addClass('borderStyle')
+                    .css({ visibility: 'visible', display: 'block', height: 0 });
+
+                let fullHeight = targetTitle.get(0).scrollHeight;
+
+                targetTitle.stop().animate({ height: fullHeight }, 200);
             });
         }
-    
-})
+    } else {
+        targetTitle.stop().animate({ height: 0 }, 200, function() {
+            targetTitle
+                .removeClass('borderStyle')
+                .css({ visibility: 'hidden', display: 'none' });
+        });
+    }
+});
 
-//function for hiding and showing content items
-function toggleContent (clickedButton) {
-    
-    //title formatting
+
+// function for hiding and showing content items
+function toggleContent(clickedButton) {
+
     let clickedString = clickedButton.text();
     let eventTitle;
 
-    //check if it has a dash, if so, format the string for iframes
-    if(clickedString.includes('-')) {
-        eventTitle = clickedString.slice(clickedString.indexOf('-') + 1, clickedString.length).trim().replaceAll(' ', '').toLowerCase().replaceAll('.', '').replaceAll(',', '');
-    //if not format it for graphic design content
+    if (clickedString.includes('-')) {
+        eventTitle = clickedString
+            .slice(clickedString.indexOf('-') + 1)
+            .trim()
+            .replaceAll(' ', '')
+            .toLowerCase()
+            .replaceAll('.', '')
+            .replaceAll(',', '');
     } else {
-        eventTitle = clickedString.toLowerCase().replaceAll(' ', '').replaceAll('.', '');
+        eventTitle = clickedString
+            .toLowerCase()
+            .replaceAll(' ', '')
+            .replaceAll('.', '');
     }
 
-    //id of target element to hide and show
     let content = $('#' + eventTitle);
-    
-    //finding parent element name
-    let parentDiv = clickedButton.parent().attr('id')
+
+    let parentDiv = clickedButton.parent().attr('id');
     let contentType = $('#' + parentDiv);
 
     switch (parentDiv) {
+
         case "graphicDesignerContent":
 
-            if(content.height() === 0) {
-                if(contentType.children().filter(':visible').length === 0) {
-                    content.addClass('borderStyle').css({display: 'flex', visibility: 'visible'}).stop().animate({ width: cWidth}, 200, function() {
-                        content.stop().animate({ height: swcHeight + 'px'}, { duration: 200, queue: false });
-                    });
+            if (!content.is(':visible')) {
+
+                if (contentType.children(':visible').length === 0) {
+
+                    content
+                        .addClass('borderStyle')
+                        .css({ display: 'flex', visibility: 'visible', width: 0, height: 0 })
+                        .stop()
+                        .animate({ width: cWidth }, 200, function() {
+                            content.stop().animate({ height: swcHeight }, { duration: 200, queue: false });
+                        });
+
                 } else {
-                    content.siblings().stop().animate({ height: '0' }, 200, function() {
-                        content.siblings().stop().animate({ width: '0'}, 200, function() {
-                            content.siblings().removeClass('borderStyle').css('visibility', 'none');
-                            content.css({display: 'flex', visibility: 'visible'}).addClass('borderStyle').stop().animate({ width: cWidth}, 200, function() {
-                                content.stop().animate({ height: swcHeight + 'px'}, { duration: 200, queue: false });
-                            });
-                        });
-                    });
-                } 
-            } else {
-                content.stop().animate({ height: '0'}, 200, function() {
-                    content.stop().animate({ width: '0'}, 200, function() {
-                        content.removeClass('borderStyle').css('visibility', 'hidden');
-                    });
-                });
-            };
-            break;
 
-        case "webDesignerContent":
-            ;
-            break;
+                    let siblings = content.siblings(':visible');
 
-        case  "artistContent":
+                    siblings.stop().animate({ height: 0 }, 200, function() {
+                        siblings.stop().animate({ width: 0 }, 200, function() {
+                            siblings
+                                .removeClass('borderStyle')
+                                .css({ visibility: 'hidden', display: 'none' });
 
-            if(content.length) {
-                if(content.height() === 0) {
-                    if(contentType.children().filter(':visible').length === 0) {
-                        content.addClass('borderStyle').css('visibility', 'visible').stop().animate({ width: cWidth}, 200, function() {
-                            content.stop().animate({ height: '400px'}, { duration: 200, queue: false });
-                        });
-                    } else {
-                        content.siblings().stop().animate({ height: '0' }, 200, function() {
-                            content.siblings().stop().animate({ width: '0'}, 200, function() {
-                                content.siblings().removeClass('borderStyle').css('visibility', 'hidden');
-                                content.css('visibility', 'visible').addClass('borderStyle').stop().animate({ width: cWidth}, 200, function() {
-                                    content.stop().animate({ height: '400px'}, { duration: 200, queue: false });
+                            content
+                                .addClass('borderStyle')
+                                .css({ display: 'flex', visibility: 'visible', width: 0, height: 0 })
+                                .stop()
+                                .animate({ width: cWidth }, 200, function() {
+                                    content.stop().animate({ height: swcHeight }, { duration: 200, queue: false });
                                 });
-                            });
-                        });
-                    }
-                } else {
-                    content.stop().animate({ height: '0'}, 200, function() {
-                        content.stop().animate({ width: '0'}, 200, function() {
-                            content.removeClass('borderStyle').css('visibility', 'hidden');
                         });
                     });
                 }
+
+            } else {
+
+                content.stop().animate({ height: 0 }, 200, function() {
+                    content.stop().animate({ width: 0 }, 200, function() {
+                        content
+                            .removeClass('borderStyle')
+                            .css({ visibility: 'hidden', display: 'none' });
+                    });
+                });
+            }
+            break;
+
+
+        case "webDesignerContent":
+            break;
+
+
+        case "artistContent":
+
+            if (content.length) {
+
+                if (!content.is(':visible')) {
+
+                    if (contentType.children(':visible').length === 0) {
+
+                        content
+                            .addClass('borderStyle')
+                            .css({ visibility: 'visible', display: 'block', width: 0, height: 0 })
+                            .stop()
+                            .animate({ width: cWidth }, 200, function() {
+                                content.stop().animate({ height: 400 }, { duration: 200, queue: false });
+                            });
+
+                    } else {
+
+                        let siblings = content.siblings(':visible');
+
+                        siblings.stop().animate({ height: 0 }, 200, function() {
+                            siblings.stop().animate({ width: 0 }, 200, function() {
+                                siblings
+                                    .removeClass('borderStyle')
+                                    .css({ visibility: 'hidden', display: 'none' });
+
+                                content
+                                    .addClass('borderStyle')
+                                    .css({ visibility: 'visible', display: 'block', width: 0, height: 0 })
+                                    .stop()
+                                    .animate({ width: cWidth }, 200, function() {
+                                        content.stop().animate({ height: 400 }, { duration: 200, queue: false });
+                                    });
+                            });
+                        });
+                    }
+
+                } else {
+
+                    content.stop().animate({ height: 0 }, 200, function() {
+                        content.stop().animate({ width: 0 }, 200, function() {
+                            content
+                                .removeClass('borderStyle')
+                                .css({ visibility: 'hidden', display: 'none' });
+                        });
+                    });
+                }
+
             } else {
                 console.log('vid not found');
             }
+
             console.log(content);
             break;
     }
-
-    
 }
