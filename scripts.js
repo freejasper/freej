@@ -27,7 +27,7 @@ $('.nameTitle').on('click', function(event) {
         if (visibleSiblings.length === 0) {
             targetTitle
                 .addClass('borderStyle')
-                .css({ visibility: 'visible', display: 'block', height: 0 });
+                .css({ visibility: 'visible', height: 0 });
 
             let fullHeight = targetTitle.get(0).scrollHeight;
 
@@ -36,11 +36,11 @@ $('.nameTitle').on('click', function(event) {
             visibleSiblings.stop().animate({ height: 0 }, 200, function() {
                 visibleSiblings
                     .removeClass('borderStyle')
-                    .css({ visibility: 'hidden', display: 'none' });
+                    .css({ visibility: 'hidden'});
 
                 targetTitle
                     .addClass('borderStyle')
-                    .css({ visibility: 'visible', display: 'block', height: 0 });
+                    .css({ visibility: 'visible', height: 0 });
 
                 let fullHeight = targetTitle.get(0).scrollHeight;
 
@@ -51,7 +51,7 @@ $('.nameTitle').on('click', function(event) {
         targetTitle.stop().animate({ height: 0 }, 200, function() {
             targetTitle
                 .removeClass('borderStyle')
-                .css({ visibility: 'hidden', display: 'none' });
+                .css({ visibility: 'hidden' });
         });
     }
 });
@@ -107,7 +107,7 @@ function toggleContent(clickedButton) {
                         siblings.stop().animate({ width: 0 }, 200, function() {
                             siblings
                                 .removeClass('borderStyle')
-                                .css({ visibility: 'hidden', display: 'none' });
+                                .css({ visibility: 'hidden' });
 
                             content
                                 .addClass('borderStyle')
@@ -126,7 +126,7 @@ function toggleContent(clickedButton) {
                     content.stop().animate({ width: 0 }, 200, function() {
                         content
                             .removeClass('borderStyle')
-                            .css({ visibility: 'hidden', display: 'none' });
+                            .css({ visibility: 'hidden' });
                     });
                 });
             }
@@ -161,7 +161,7 @@ function toggleContent(clickedButton) {
                             siblings.stop().animate({ width: 0 }, 200, function() {
                                 siblings
                                     .removeClass('borderStyle')
-                                    .css({ visibility: 'hidden', display: 'none' });
+                                    .css({ visibility: 'hidden' });
 
                                 content
                                     .addClass('borderStyle')
@@ -180,7 +180,7 @@ function toggleContent(clickedButton) {
                         content.stop().animate({ width: 0 }, 200, function() {
                             content
                                 .removeClass('borderStyle')
-                                .css({ visibility: 'hidden', display: 'none' });
+                                .css({ visibility: 'hidden' });
                         });
                     });
                 }
